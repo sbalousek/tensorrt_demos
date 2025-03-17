@@ -31,7 +31,7 @@ clean:
 	rm -f *.so *.o
 
 libyolo_layer.so: yolo_layer.o
-	$(CC) -shared -o $@ $< $(LIBS)
+	$(CC) -shared -static-libstdc++ -o $@ $< $(LIBS)
 
 yolo_layer.o: yolo_layer.cu yolo_layer.h
 	$(NVCC) -ccbin $(CC) $(INCS) $(NVCCFLAGS) -Xcompiler -fPIC -c -o $@ $<
